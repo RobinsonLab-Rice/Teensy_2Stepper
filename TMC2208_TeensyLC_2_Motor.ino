@@ -477,6 +477,15 @@ inline void parseMessage() {
       }
     }
   }
+  else if (message.startsWith("spr"))  {
+    int ind = message.indexOf(':',3);
+    if (ind > 0) {
+      int val = message.substring(ind+1).toInt();
+      if (val >= 0 && val <= 16000) {
+        drivers[selectedDriver].setStepperSteps(val);
+      }
+    }
+  }
   else if (message.startsWith("reset"))  {
     drivers[selectedDriver].reset();
   }
